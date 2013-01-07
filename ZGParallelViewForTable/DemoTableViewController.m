@@ -25,20 +25,42 @@
 {
     [super viewDidLoad];
 
-    self.headerScrollView.contentSize = self.contontView.frame.size;
-    [self.avatar.layer setCornerRadius:5.f];
-    [self.avatar.layer setMasksToBounds:YES];
+    [self customizeUI];
     
 #warning init with or without displayRadio. This is the first line of code
     //[self.tableView addParallelViewWithUIView:self.awesomeZG];
-    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.5];
+    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7];
     
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    CGFloat xOffSet = scrollView.contentOffset.x;
+    [self darkerTheBackground:scrollView.contentOffset.x];
     
+#warning You must call this method here, inside scrollViewDidScroll: this is the second line of code
+    [self.tableView updateParallelView];
+}
+
+
+
+
+
+
+//=====================================================================
+//
+//             Rest of the code is for demo purpose
+//
+//=====================================================================
+
+
+
+- (void)customizeUI{
+    self.headerScrollView.contentSize = self.contontView.frame.size;
+    [self.avatar.layer setCornerRadius:5.f];
+    [self.avatar.layer setMasksToBounds:YES];
+}
+
+- (void)darkerTheBackground:(CGFloat)xOffSet{
     if (xOffSet != 0) {
         CGFloat pageWidth = self.headerScrollView.frame.size.width;
         CGFloat alphaForContentView = xOffSet/pageWidth;
@@ -53,10 +75,8 @@
             self.headerPageControl.currentPage = page;
         }
     }
-    
-#warning You must call this method here, inside scrollViewDidScroll: this is the second line of code
-    [self.tableView updateParallelView];
 }
+
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (scrollView == self.headerScrollView) {

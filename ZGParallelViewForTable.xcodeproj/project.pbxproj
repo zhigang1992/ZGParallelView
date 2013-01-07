@@ -21,22 +21,7 @@
 		0448FFDE169B04E500B99646 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFDD169B04E500B99646 /* Default@2x.png */; };
 		0448FFE0169B04E500B99646 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFDF169B04E500B99646 /* Default-568h@2x.png */; };
 		0448FFE3169B04E500B99646 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFE1169B04E500B99646 /* MainStoryboard.storyboard */; };
-		0448FFEE169B04E500B99646 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFED169B04E500B99646 /* SenTestingKit.framework */; };
-		0448FFEF169B04E500B99646 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFC9169B04E500B99646 /* UIKit.framework */; };
-		0448FFF0169B04E500B99646 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFCB169B04E500B99646 /* Foundation.framework */; };
-		0448FFF8169B04E500B99646 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFF6169B04E500B99646 /* InfoPlist.strings */; };
-		0448FFFB169B04E500B99646 /* ZGParallelViewForTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448FFFA169B04E500B99646 /* ZGParallelViewForTableTests.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0448FFF1169B04E500B99646 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0448FFBC169B04E500B99646 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0448FFC4169B04E500B99646;
-			remoteInfo = ZGParallelViewForTable;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04480004169B052100B99646 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
@@ -59,12 +44,7 @@
 		0448FFDD169B04E500B99646 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0448FFDF169B04E500B99646 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0448FFE2169B04E500B99646 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		0448FFEC169B04E500B99646 /* ZGParallelViewForTableTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZGParallelViewForTableTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0448FFED169B04E500B99646 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		0448FFF5169B04E500B99646 /* ZGParallelViewForTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZGParallelViewForTableTests-Info.plist"; sourceTree = "<group>"; };
-		0448FFF7169B04E500B99646 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0448FFF9169B04E500B99646 /* ZGParallelViewForTableTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGParallelViewForTableTests.h; sourceTree = "<group>"; };
-		0448FFFA169B04E500B99646 /* ZGParallelViewForTableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGParallelViewForTableTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,16 +59,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0448FFE8169B04E500B99646 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0448FFEE169B04E500B99646 /* SenTestingKit.framework in Frameworks */,
-				0448FFEF169B04E500B99646 /* UIKit.framework in Frameworks */,
-				0448FFF0169B04E500B99646 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,7 +68,6 @@
 				0448001A169B285300B99646 /* UITableView+ZGParallelView.h */,
 				0448001B169B285400B99646 /* UITableView+ZGParallelView.m */,
 				0448FFCF169B04E500B99646 /* ZGParallelViewForTable */,
-				0448FFF3169B04E500B99646 /* ZGParallelViewForTableTests */,
 				0448FFC8169B04E500B99646 /* Frameworks */,
 				0448FFC6169B04E500B99646 /* Products */,
 			);
@@ -108,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				0448FFC5169B04E500B99646 /* ZGParallelViewForTable.app */,
-				0448FFEC169B04E500B99646 /* ZGParallelViewForTableTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,8 +98,6 @@
 			children = (
 				04480004169B052100B99646 /* DemoTableViewController.h */,
 				04480005169B052100B99646 /* DemoTableViewController.m */,
-				0448FFD8169B04E500B99646 /* ZGAppDelegate.h */,
-				0448FFD9169B04E500B99646 /* ZGAppDelegate.m */,
 				0448FFE1169B04E500B99646 /* MainStoryboard.storyboard */,
 				0448000E169B091000B99646 /* ZG.png */,
 				0448FFD0169B04E500B99646 /* Supporting Files */,
@@ -142,6 +108,8 @@
 		0448FFD0169B04E500B99646 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0448FFD8169B04E500B99646 /* ZGAppDelegate.h */,
+				0448FFD9169B04E500B99646 /* ZGAppDelegate.m */,
 				0448FFD1169B04E500B99646 /* ZGParallelViewForTable-Info.plist */,
 				0448FFD2169B04E500B99646 /* InfoPlist.strings */,
 				0448FFD5169B04E500B99646 /* main.m */,
@@ -149,25 +117,6 @@
 				0448FFDB169B04E500B99646 /* Default.png */,
 				0448FFDD169B04E500B99646 /* Default@2x.png */,
 				0448FFDF169B04E500B99646 /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0448FFF3169B04E500B99646 /* ZGParallelViewForTableTests */ = {
-			isa = PBXGroup;
-			children = (
-				0448FFF9169B04E500B99646 /* ZGParallelViewForTableTests.h */,
-				0448FFFA169B04E500B99646 /* ZGParallelViewForTableTests.m */,
-				0448FFF4169B04E500B99646 /* Supporting Files */,
-			);
-			path = ZGParallelViewForTableTests;
-			sourceTree = "<group>";
-		};
-		0448FFF4169B04E500B99646 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0448FFF5169B04E500B99646 /* ZGParallelViewForTableTests-Info.plist */,
-				0448FFF6169B04E500B99646 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,25 +141,6 @@
 			productReference = 0448FFC5169B04E500B99646 /* ZGParallelViewForTable.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0448FFEB169B04E500B99646 /* ZGParallelViewForTableTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04480001169B04E500B99646 /* Build configuration list for PBXNativeTarget "ZGParallelViewForTableTests" */;
-			buildPhases = (
-				0448FFE7169B04E500B99646 /* Sources */,
-				0448FFE8169B04E500B99646 /* Frameworks */,
-				0448FFE9169B04E500B99646 /* Resources */,
-				0448FFEA169B04E500B99646 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0448FFF2169B04E500B99646 /* PBXTargetDependency */,
-			);
-			name = ZGParallelViewForTableTests;
-			productName = ZGParallelViewForTableTests;
-			productReference = 0448FFEC169B04E500B99646 /* ZGParallelViewForTableTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -234,7 +164,6 @@
 			projectRoot = "";
 			targets = (
 				0448FFC4169B04E500B99646 /* ZGParallelViewForTable */,
-				0448FFEB169B04E500B99646 /* ZGParallelViewForTableTests */,
 			);
 		};
 /* End PBXProject section */
@@ -253,31 +182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0448FFE9169B04E500B99646 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0448FFF8169B04E500B99646 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0448FFEA169B04E500B99646 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0448FFC1169B04E500B99646 /* Sources */ = {
@@ -291,23 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0448FFE7169B04E500B99646 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0448FFFB169B04E500B99646 /* ZGParallelViewForTableTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0448FFF2169B04E500B99646 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0448FFC4169B04E500B99646 /* ZGParallelViewForTable */;
-			targetProxy = 0448FFF1169B04E500B99646 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0448FFD2169B04E500B99646 /* InfoPlist.strings */ = {
@@ -326,14 +215,6 @@
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
-		0448FFF6169B04E500B99646 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0448FFF7169B04E500B99646 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -345,40 +226,6 @@
 				INFOPLIST_FILE = "ZGParallelViewForTable/ZGParallelViewForTable-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		04480002169B04E500B99646 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZGParallelViewForTable.app/ZGParallelViewForTable";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ZGParallelViewForTable/ZGParallelViewForTable-Prefix.pch";
-				INFOPLIST_FILE = "ZGParallelViewForTableTests/ZGParallelViewForTableTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		04480003169B04E500B99646 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZGParallelViewForTable.app/ZGParallelViewForTable";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ZGParallelViewForTable/ZGParallelViewForTable-Prefix.pch";
-				INFOPLIST_FILE = "ZGParallelViewForTableTests/ZGParallelViewForTableTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -446,14 +293,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04480001169B04E500B99646 /* Build configuration list for PBXNativeTarget "ZGParallelViewForTableTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04480002169B04E500B99646 /* Debug */,
-				04480003169B04E500B99646 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		0448FFBF169B04E500B99646 /* Build configuration list for PBXProject "ZGParallelViewForTable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
