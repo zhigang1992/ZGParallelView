@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04480006169B052100B99646 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04480005169B052100B99646 /* DemoTableViewController.m */; };
+		0448000F169B091000B99646 /* ZG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0448000E169B091000B99646 /* ZG.png */; };
+		04480019169B246900B99646 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04480018169B246900B99646 /* QuartzCore.framework */; };
+		0448001C169B285400B99646 /* UITableView+ZGParallelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448001B169B285400B99646 /* UITableView+ZGParallelView.m */; };
 		0448FFCA169B04E500B99646 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFC9169B04E500B99646 /* UIKit.framework */; };
 		0448FFCC169B04E500B99646 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFCB169B04E500B99646 /* Foundation.framework */; };
 		0448FFCE169B04E500B99646 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFCD169B04E500B99646 /* CoreGraphics.framework */; };
@@ -17,7 +21,6 @@
 		0448FFDE169B04E500B99646 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFDD169B04E500B99646 /* Default@2x.png */; };
 		0448FFE0169B04E500B99646 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFDF169B04E500B99646 /* Default-568h@2x.png */; };
 		0448FFE3169B04E500B99646 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0448FFE1169B04E500B99646 /* MainStoryboard.storyboard */; };
-		0448FFE6169B04E500B99646 /* ZGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448FFE5169B04E500B99646 /* ZGViewController.m */; };
 		0448FFEE169B04E500B99646 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFED169B04E500B99646 /* SenTestingKit.framework */; };
 		0448FFEF169B04E500B99646 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFC9169B04E500B99646 /* UIKit.framework */; };
 		0448FFF0169B04E500B99646 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448FFCB169B04E500B99646 /* Foundation.framework */; };
@@ -36,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04480004169B052100B99646 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
+		04480005169B052100B99646 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
+		0448000E169B091000B99646 /* ZG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZG.png; sourceTree = "<group>"; };
+		04480018169B246900B99646 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0448001A169B285300B99646 /* UITableView+ZGParallelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ZGParallelView.h"; path = "Class/UITableView+ZGParallelView.h"; sourceTree = "<group>"; };
+		0448001B169B285400B99646 /* UITableView+ZGParallelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ZGParallelView.m"; path = "Class/UITableView+ZGParallelView.m"; sourceTree = "<group>"; };
 		0448FFC5169B04E500B99646 /* ZGParallelViewForTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGParallelViewForTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0448FFC9169B04E500B99646 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0448FFCB169B04E500B99646 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,8 +59,6 @@
 		0448FFDD169B04E500B99646 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0448FFDF169B04E500B99646 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0448FFE2169B04E500B99646 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		0448FFE4169B04E500B99646 /* ZGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGViewController.h; sourceTree = "<group>"; };
-		0448FFE5169B04E500B99646 /* ZGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGViewController.m; sourceTree = "<group>"; };
 		0448FFEC169B04E500B99646 /* ZGParallelViewForTableTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZGParallelViewForTableTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0448FFED169B04E500B99646 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		0448FFF5169B04E500B99646 /* ZGParallelViewForTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZGParallelViewForTableTests-Info.plist"; sourceTree = "<group>"; };
@@ -65,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04480019169B246900B99646 /* QuartzCore.framework in Frameworks */,
 				0448FFCA169B04E500B99646 /* UIKit.framework in Frameworks */,
 				0448FFCC169B04E500B99646 /* Foundation.framework in Frameworks */,
 				0448FFCE169B04E500B99646 /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +95,8 @@
 		0448FFBA169B04E500B99646 = {
 			isa = PBXGroup;
 			children = (
+				0448001A169B285300B99646 /* UITableView+ZGParallelView.h */,
+				0448001B169B285400B99646 /* UITableView+ZGParallelView.m */,
 				0448FFCF169B04E500B99646 /* ZGParallelViewForTable */,
 				0448FFF3169B04E500B99646 /* ZGParallelViewForTableTests */,
 				0448FFC8169B04E500B99646 /* Frameworks */,
@@ -106,6 +116,7 @@
 		0448FFC8169B04E500B99646 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04480018169B246900B99646 /* QuartzCore.framework */,
 				0448FFC9169B04E500B99646 /* UIKit.framework */,
 				0448FFCB169B04E500B99646 /* Foundation.framework */,
 				0448FFCD169B04E500B99646 /* CoreGraphics.framework */,
@@ -117,11 +128,12 @@
 		0448FFCF169B04E500B99646 /* ZGParallelViewForTable */ = {
 			isa = PBXGroup;
 			children = (
+				04480004169B052100B99646 /* DemoTableViewController.h */,
+				04480005169B052100B99646 /* DemoTableViewController.m */,
 				0448FFD8169B04E500B99646 /* ZGAppDelegate.h */,
 				0448FFD9169B04E500B99646 /* ZGAppDelegate.m */,
 				0448FFE1169B04E500B99646 /* MainStoryboard.storyboard */,
-				0448FFE4169B04E500B99646 /* ZGViewController.h */,
-				0448FFE5169B04E500B99646 /* ZGViewController.m */,
+				0448000E169B091000B99646 /* ZG.png */,
 				0448FFD0169B04E500B99646 /* Supporting Files */,
 			);
 			path = ZGParallelViewForTable;
@@ -237,6 +249,7 @@
 				0448FFDE169B04E500B99646 /* Default@2x.png in Resources */,
 				0448FFE0169B04E500B99646 /* Default-568h@2x.png in Resources */,
 				0448FFE3169B04E500B99646 /* MainStoryboard.storyboard in Resources */,
+				0448000F169B091000B99646 /* ZG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +286,8 @@
 			files = (
 				0448FFD6169B04E500B99646 /* main.m in Sources */,
 				0448FFDA169B04E500B99646 /* ZGAppDelegate.m in Sources */,
-				0448FFE6169B04E500B99646 /* ZGViewController.m in Sources */,
+				04480006169B052100B99646 /* DemoTableViewController.m in Sources */,
+				0448001C169B285400B99646 /* UITableView+ZGParallelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

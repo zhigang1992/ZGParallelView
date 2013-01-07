@@ -1,5 +1,5 @@
 //
-//  ZGViewController.h
+//  DemoTableViewController.h
 //  ZGParallelViewForTable
 //
 //  Created by Kyle Fang on 1/7/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZGViewController : UIViewController
+@interface DemoTableViewController : UITableViewController
 
 @end
