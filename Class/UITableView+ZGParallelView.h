@@ -12,6 +12,5 @@
 
 - (void)addParallelViewWithUIView:(UIView *)aViewToAdd;
 - (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio;
-- (void)updateParallelView;
 
 @end

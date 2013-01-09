@@ -31,14 +31,21 @@
     //[self.tableView addParallelViewWithUIView:self.awesomeZG];
     [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7];
     
+    
+    /** below is just a test for kvo remove, you can ignore it
+     int64_t delayInSeconds = 5.0;
+     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+     UIView *secondeView = [[UIView alloc] initWithFrame:self.awesomeZG.frame];
+     secondeView.backgroundColor = [UIColor blueColor];
+     [self.tableView addParallelViewWithUIView:secondeView];
+     });
+     
+     */
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
     [self darkerTheBackground:scrollView.contentOffset.x];
-    
-#warning You must call this method here, inside scrollViewDidScroll: this is the second line of code
-    [self.tableView updateParallelView];
 }
 
 
