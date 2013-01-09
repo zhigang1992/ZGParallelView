@@ -7,42 +7,149 @@
 //
 
 #import "UITableView+ZGParallelView.h"
+#import <objc/runtime.h>
+
+@interface ZGScrollView : UIScrollView
+@property (nonatomic, weak) UITableView *tableView;
+@end
+
+
+
+static char UITableViewZGParallelViewDisplayRadio;
+static char UITableViewZGParallelViewViewHeight;
+static char UITableViewZGParallelViewEmbededScrollView;
+static char UITableViewZGParallelViewIsObserving;
+
+@interface UITableView (ZGParallelViewPri)
+@property (nonatomic, assign) CGFloat displayRadio;
+@property (nonatomic, assign) CGFloat viewHeight;
+@property (nonatomic, strong) ZGScrollView *embededScrollView;
+@property (nonatomic, assign) BOOL isObserving;
+@end
+
+
+@implementation UITableView (ZGParallelViewPri)
+@dynamic displayRadio, viewHeight, embededScrollView, isObserving;
+
+- (void)setDisplayRadio:(CGFloat)displayRadio {
+    [self willChangeValueForKey:@"displayRadio"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewDisplayRadio,
+                             [NSNumber numberWithFloat:displayRadio],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"displayRadio"];
+}
+
+- (CGFloat)displayRadio {
+    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewDisplayRadio);
+    return [number floatValue];
+}
+
+- (void)setViewHeight:(CGFloat)viewHeight {
+    [self willChangeValueForKey:@"viewHeight"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewViewHeight,
+                             [NSNumber numberWithFloat:viewHeight],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"viewHeight"];
+}
+
+- (CGFloat)viewHeight {
+    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewViewHeight);
+    return [number floatValue];
+}
+
+- (void)setEmbededScrollView:(ZGScrollView *)embededScrollView {
+    [self willChangeValueForKey:@"embededScrollView"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewEmbededScrollView,
+                             embededScrollView,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"embededScrollView"];
+}
+
+- (ZGScrollView *)embededScrollView {
+    return objc_getAssociatedObject(self, &UITableViewZGParallelViewEmbededScrollView);
+}
+
+- (void)setIsObserving:(BOOL)isObserving {
+    if (self.isObserving == YES && isObserving == NO) {
+        [self removeObserver:self forKeyPath:@"contentOffset"];
+    }
+    
+    [self willChangeValueForKey:@"isObserving"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewIsObserving,
+                             [NSNumber numberWithBool:isObserving],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"isObserving"];
+}
+
+- (BOOL)isObserving {
+    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewIsObserving);
+    if (number == nil) {
+        return NO;
+    } else {
+        return [number boolValue];
+    }
+}
+@end
+
+
 
 #define DEFAULT_DISPLAY_RADIO   0.5f
-
 @implementation UITableView (ZGParallelView)
-
-
-static CGFloat displayRadio;
-static CGFloat viewHeight;
-static UIScrollView *embededScrollView;
-
-- (void)addParallelViewWithUIView:(UIView *)aViewToAdd{
+- (void)addParallelViewWithUIView:(UIView *)aViewToAdd {
+    NSAssert(aViewToAdd != nil, @"aViewToAdd can not be nil");
     [self addParallelViewWithUIView:aViewToAdd withDisplayRadio:DEFAULT_DISPLAY_RADIO];
 }
 
-- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat)aDisplayRadio{
+- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat)aDisplayRadio {
+    NSAssert(aViewToAdd != nil, @"aViewToAdd can not be nil");
+    
     aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, -aViewToAdd.frame.origin.x, -aViewToAdd.frame.origin.y);
     if (aDisplayRadio>1 && aDisplayRadio<0) {
-        displayRadio = 1;
+        self.displayRadio = 1;
     } else {
-        displayRadio = aDisplayRadio;        
+        self.displayRadio = aDisplayRadio;
     }
-    viewHeight = aViewToAdd.frame.size.height;
-    embededScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, viewHeight)];
-    [embededScrollView addSubview:aViewToAdd];
-    aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, 0, viewHeight*(1.f - displayRadio)/2.f);
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, viewHeight*displayRadio)];
-    [headView addSubview:embededScrollView];
-    embededScrollView.frame = CGRectOffset(embededScrollView.frame, 0, viewHeight*(displayRadio-1.f));
+    self.viewHeight = aViewToAdd.frame.size.height;
+    self.embededScrollView = [[ZGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight)];
+    self.embededScrollView.tableView = self;
+    [self.embededScrollView addSubview:aViewToAdd];
+    aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, 0, self.viewHeight*(1.f - self.displayRadio)/2.f);
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight*self.displayRadio)];
+    [headView addSubview:self.embededScrollView];
+    self.embededScrollView.frame = CGRectOffset(self.embededScrollView.frame, 0, self.viewHeight*(self.displayRadio-1.f));
     self.tableHeaderView = headView;
-}
-
-- (void)updateParallelView{
-    CGFloat yOffset = self.contentOffset.y;
-    if (yOffset<0 && yOffset>viewHeight*(displayRadio-1.f)) {
-        embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
+    
+    if (self.isObserving == NO) {
+        [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        self.isObserving = YES;
     }
 }
 
+- (void)updateParallelView {
+    CGFloat yOffset = self.contentOffset.y;
+    if (yOffset<0 && yOffset>self.viewHeight*(self.displayRadio-1.f)) {
+        self.embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if([keyPath isEqualToString:@"contentOffset"]) {
+        [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
+    }
+}
+
+- (void)scrollViewDidScroll:(CGPoint)contentOffset {
+    [self updateParallelView];
+}
+@end
+
+
+
+@implementation ZGScrollView
+@synthesize tableView;
+- (void)dealloc {
+    if ([self.tableView isObserving] == YES) {
+        self.tableView.isObserving = NO;//!!Remove KVO Observer
+    }
+}
 @end
