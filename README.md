@@ -19,11 +19,7 @@ The head view will be a full featured UIView, it can handle touch event or even 
 		- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio;
 		//By default, displayRadio is 0.5
 		
-4. In your `UITableViewDelegate`, implement thi method `scrollViewDidScroll:(UIScrollView *)` like this:
-
-		- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-		    [self.tableView updateParallelView];
-		}	
+4. Thx to **awesome** [fengjian0106](https://github.com/fengjian0106), this is all you need to do.
 
 ####Screenshot
 
