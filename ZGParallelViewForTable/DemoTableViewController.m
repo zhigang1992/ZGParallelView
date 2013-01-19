@@ -29,7 +29,7 @@
     
 #warning init with or without displayRadio. This is the first line of code
     //[self.tableView addParallelViewWithUIView:self.awesomeZG];
-    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7];
+    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7 cutOffAtMax:YES];
     
     
     /** below is just a test for kvo remove, you can ignore it

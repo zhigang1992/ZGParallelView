@@ -17,19 +17,22 @@
 
 static char UITableViewZGParallelViewDisplayRadio;
 static char UITableViewZGParallelViewViewHeight;
+static char UITableViewZGParallelViewCutOffAtMax;
 static char UITableViewZGParallelViewEmbededScrollView;
 static char UITableViewZGParallelViewIsObserving;
+
 
 @interface UITableView (ZGParallelViewPri)
 @property (nonatomic, assign) CGFloat displayRadio;
 @property (nonatomic, assign) CGFloat viewHeight;
+@property (nonatomic, assign) BOOL cutOffAtMax;
 @property (nonatomic, strong) ZGScrollView *embededScrollView;
 @property (nonatomic, assign) BOOL isObserving;
 @end
 
 
 @implementation UITableView (ZGParallelViewPri)
-@dynamic displayRadio, viewHeight, embededScrollView, isObserving;
+@dynamic displayRadio, viewHeight, cutOffAtMax, embededScrollView, isObserving;
 
 - (void)setDisplayRadio:(CGFloat)displayRadio {
     [self willChangeValueForKey:@"displayRadio"];
@@ -55,6 +58,21 @@ static char UITableViewZGParallelViewIsObserving;
 - (CGFloat)viewHeight {
     NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewViewHeight);
     return [number floatValue];
+}
+
+- (void)setCutOffAtMax:(BOOL)cutOffAtMax{
+    [self willChangeValueForKey:@"cutOffAtMax"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewCutOffAtMax, [NSNumber numberWithBool:cutOffAtMax], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"cutOffAtMax"];
+}
+
+- (BOOL)cutOffAtMax{
+    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewCutOffAtMax);
+    if (number == nil) {
+        return NO;
+    } else {
+        return [number boolValue];
+    }
 }
 
 - (void)setEmbededScrollView:(ZGScrollView *)embededScrollView {
@@ -96,11 +114,14 @@ static char UITableViewZGParallelViewIsObserving;
 #define DEFAULT_DISPLAY_RADIO   0.5f
 @implementation UITableView (ZGParallelView)
 - (void)addParallelViewWithUIView:(UIView *)aViewToAdd {
-    NSAssert(aViewToAdd != nil, @"aViewToAdd can not be nil");
     [self addParallelViewWithUIView:aViewToAdd withDisplayRadio:DEFAULT_DISPLAY_RADIO];
 }
 
-- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat)aDisplayRadio {
+- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat)displayRadio{
+    [self addParallelViewWithUIView:aViewToAdd withDisplayRadio:displayRadio cutOffAtMax:NO];
+}
+
+- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat)aDisplayRadio cutOffAtMax:(BOOL)cutOffAtMax{
     NSAssert(aViewToAdd != nil, @"aViewToAdd can not be nil");
     
     aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, -aViewToAdd.frame.origin.x, -aViewToAdd.frame.origin.y);
@@ -110,6 +131,7 @@ static char UITableViewZGParallelViewIsObserving;
         self.displayRadio = aDisplayRadio;
     }
     self.viewHeight = aViewToAdd.frame.size.height;
+    self.cutOffAtMax = cutOffAtMax;
     self.embededScrollView = [[ZGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight)];
     self.embededScrollView.tableView = self;
     [self.embededScrollView addSubview:aViewToAdd];
@@ -129,6 +151,10 @@ static char UITableViewZGParallelViewIsObserving;
     CGFloat yOffset = self.contentOffset.y;
     if (yOffset<0 && yOffset>self.viewHeight*(self.displayRadio-1.f)) {
         self.embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
+    }
+    
+    if (self.cutOffAtMax && yOffset<self.viewHeight*(self.displayRadio-1.f)) {
+        self.contentOffset = CGPointMake(0.f, self.viewHeight*(self.displayRadio-1.f));
     }
 }
 
