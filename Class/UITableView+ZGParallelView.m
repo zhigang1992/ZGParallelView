@@ -141,6 +141,11 @@ static char UITableViewZGParallelViewIsObserving;
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     [self updateParallelView];
 }
+
+- (void)dealloc{
+    [self removeObserver:self forKeyPath:@"contentOffset" context:nil];
+}
+
 @end
 
 

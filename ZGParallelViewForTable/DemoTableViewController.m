@@ -44,11 +44,6 @@
      */
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self darkerTheBackground:scrollView.contentOffset.x];
-}
-
-
 
 
 
@@ -59,6 +54,9 @@
 //
 //=====================================================================
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self darkerTheBackground:scrollView.contentOffset.x];
+}
 
 
 - (void)customizeUI{
@@ -110,5 +108,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
