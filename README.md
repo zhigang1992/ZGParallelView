@@ -14,10 +14,14 @@ The head view will be a full featured UIView, it can handle touch event or even 
 2. Import those two files into your VC.
 3. In `ViewDidLoad`. Initialate the parallelView:
 
-		- (void)addParallelViewWithUIView:(UIView *)aViewToAdd;
-		//or
+		- (void)addParallelViewWithUIView:(UIView *)
+		
+		
 		- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio;
 		//By default, displayRadio is 0.5
+
+		- (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio cutOffAtMax:(BOOL)cutOffAtMax;
+		//Set cutOffAtMax to YES to stop the scrolling when it hits the top.
 		
 4. Thx to **awesome** [fengjian0106](https://github.com/fengjian0106), this is all you need to do.
 
