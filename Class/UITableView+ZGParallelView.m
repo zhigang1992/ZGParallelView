@@ -169,7 +169,9 @@ static char UITableViewZGParallelViewIsObserving;
 }
 
 - (void)dealloc{
-    [self removeObserver:self forKeyPath:@"contentOffset" context:nil];
+    if (self.isObserving) {
+        [self removeObserver:self forKeyPath:@"contentOffset" context:nil];
+    }
 }
 
 @end
