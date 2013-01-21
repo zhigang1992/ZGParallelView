@@ -89,7 +89,12 @@ static char UITableViewZGParallelViewIsObserving;
 
 - (void)setIsObserving:(BOOL)isObserving {
     if (self.isObserving == YES && isObserving == NO) {
-        [self removeObserver:self forKeyPath:@"contentOffset"];
+        @try {
+            [self removeObserver:self forKeyPath:@"contentOffset"];
+        }
+        @catch (NSException *exception) {
+            //It's not observing
+        }
     }
     
     [self willChangeValueForKey:@"isObserving"];
