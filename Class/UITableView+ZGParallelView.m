@@ -138,6 +138,7 @@ static char UITableViewZGParallelViewIsObserving;
     self.viewHeight = aViewToAdd.frame.size.height;
     self.cutOffAtMax = cutOffAtMax;
     self.embededScrollView = [[ZGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight)];
+    self.embededScrollView.scrollsToTop = NO;
     self.embededScrollView.tableView = self;
     [self.embededScrollView addSubview:aViewToAdd];
     aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, 0, self.viewHeight*(1.f - self.displayRadio)/2.f);

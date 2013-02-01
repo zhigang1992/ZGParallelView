@@ -61,6 +61,7 @@
 
 - (void)customizeUI{
     self.headerScrollView.contentSize = self.contontView.frame.size;
+    self.headerScrollView.scrollsToTop = NO;
     [self.avatar.layer setCornerRadius:5.f];
     [self.avatar.layer setMasksToBounds:YES];
 }
