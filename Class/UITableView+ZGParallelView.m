@@ -20,19 +20,21 @@ static char UITableViewZGParallelViewViewHeight;
 static char UITableViewZGParallelViewStyle;
 static char UITableViewZGParallelViewEmbededScrollView;
 static char UITableViewZGParallelViewIsObserving;
+static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
 
 
 @interface UITableView (ZGParallelViewPri)
 @property (nonatomic, assign) CGFloat displayRadio;
 @property (nonatomic, assign) CGFloat viewHeight;
 @property (nonatomic, assign) ZGScrollViewStyle parallelViewStyle;
+@property (nonatomic, assign) BOOL cutOffAtMaxSetContentOffSet;
 @property (nonatomic, strong) ZGScrollView *embededScrollView;
 @property (nonatomic, assign) BOOL isObserving;
 @end
 
 
 @implementation UITableView (ZGParallelViewPri)
-@dynamic displayRadio, viewHeight, parallelViewStyle, embededScrollView, isObserving;
+@dynamic displayRadio, viewHeight, parallelViewStyle, embededScrollView, isObserving, cutOffAtMaxSetContentOffSet;
 
 - (void)setDisplayRadio:(CGFloat)displayRadio {
     [self willChangeValueForKey:@"displayRadio"];
@@ -72,6 +74,21 @@ static char UITableViewZGParallelViewIsObserving;
         return ZGScrollViewStyleDefault;
     } else {
         return [number integerValue];
+    }
+}
+
+- (void)setCutOffAtMaxSetContentOffSet:(BOOL)cutOffAtMaxSetContentOffSet{
+    [self willChangeValueForKey:@"cutOffAtMaxSetContentOffSet"];
+    objc_setAssociatedObject(self, &UITableViewZGParallelViewCutOffAtMaxSetContentOffSet, [NSNumber numberWithBool:cutOffAtMaxSetContentOffSet], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"cutOffAtMaxSetContentOffSet"];
+}
+
+- (BOOL)cutOffAtMaxSetContentOffSet{
+    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewCutOffAtMaxSetContentOffSet);
+    if (number == nil) {
+        return NO;
+    } else {
+        return [number isEqualToNumber:@YES];
     }
 }
 
@@ -157,8 +174,18 @@ static char UITableViewZGParallelViewIsObserving;
     }
 }
 
-- (void)updateParallelView {
-    CGFloat yOffset = self.contentOffset.y;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if([keyPath isEqualToString:@"contentOffset"]) {
+        if (self.cutOffAtMaxSetContentOffSet) {
+            self.cutOffAtMaxSetContentOffSet = NO;
+        } else {
+            [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
+        }
+    }
+}
+
+- (void)scrollViewDidScroll:(CGPoint)contentOffset {
+    CGFloat yOffset = contentOffset.y;
     if (yOffset<0 && yOffset>self.viewHeight*(self.displayRadio-1.f)) {
         self.embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
     } else if (yOffset<self.viewHeight*(self.displayRadio-1.f)) {
@@ -166,6 +193,7 @@ static char UITableViewZGParallelViewIsObserving;
             case ZGScrollViewStyleDefault:
                 break;
             case ZGScrollViewStyleCutOffAtMax:{
+                self.cutOffAtMaxSetContentOffSet = YES;
                 self.contentOffset = CGPointMake(0.f, self.viewHeight*(self.displayRadio-1.f));
                 break;
             }
@@ -178,16 +206,6 @@ static char UITableViewZGParallelViewIsObserving;
                 break;
         }
     }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if([keyPath isEqualToString:@"contentOffset"]) {
-        [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
-    }
-}
-
-- (void)scrollViewDidScroll:(CGPoint)contentOffset {
-    [self updateParallelView];
 }
 
 - (void)dealloc{
