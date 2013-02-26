@@ -27,9 +27,8 @@
 
     [self customizeUI];
     
-#warning init with or without displayRadio. This is the first line of code
     //[self.tableView addParallelViewWithUIView:self.awesomeZG];
-    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7 cutOffAtMax:YES];
+    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7 headerViewStyle:ZGScrollViewStyleDefault];
     
     
     /** below is just a test for kvo remove, you can ignore it
@@ -44,6 +43,23 @@
      */
 }
 
+- (IBAction)SwitchParallelViewStyle:(UISegmentedControl *)sender {
+    ZGScrollViewStyle PVStyle = nil;
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            PVStyle = ZGScrollViewStyleDefault;
+            break;
+        case 1:
+            PVStyle = ZGScrollViewStyleCutOffAtMax;
+            break;
+        case 2:
+            PVStyle = ZGScrollViewStyleStickToTheTop;
+            break;
+        default:
+            break;
+    }
+    [self.tableView addParallelViewWithUIView:self.awesomeZG withDisplayRadio:0.7 headerViewStyle:PVStyle];
+}
 
 
 
