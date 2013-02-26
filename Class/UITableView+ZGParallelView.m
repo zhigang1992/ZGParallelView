@@ -195,6 +195,7 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
             case ZGScrollViewStyleCutOffAtMax:{
                 self.cutOffAtMaxSetContentOffSet = YES;
                 self.contentOffset = CGPointMake(0.f, self.viewHeight*(self.displayRadio-1.f));
+                self.embededScrollView.contentOffset = CGPointMake(0.f, -self.viewHeight*(self.displayRadio-1.f)*0.5);
                 break;
             }
             case ZGScrollViewStyleStickToTheTop:{
