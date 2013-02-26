@@ -32,6 +32,8 @@
     
 }
 
+
+
 - (IBAction)SwitchParallelViewStyle:(UISegmentedControl *)sender {
     ZGScrollViewStyle PVStyle = nil;
     switch (sender.selectedSegmentIndex) {
@@ -69,6 +71,11 @@
     self.headerScrollView.scrollsToTop = NO;
     [self.avatar.layer setCornerRadius:5.f];
     [self.avatar.layer setMasksToBounds:YES];
+    
+    //Add a second View when using stick to the top
+    UIImageView *avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 320*(0.8-1), 320, 320)];
+    [avatarView setImage:[UIImage imageNamed:@"ZG"]];
+    [self.tableView insertSubview:avatarView aboveSubview:self.tableView.backgroundView];
 }
 
 - (void)darkerTheBackground:(CGFloat)xOffSet{
