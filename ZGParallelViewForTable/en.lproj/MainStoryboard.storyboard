@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection footerTitle="ZGParallelViewForTable looks like Parallax. yet, sepcailly design for UITableView. you can use it with two code." id="HxM-9n-icu">
+                            <tableViewSection footerTitle="ZGParallelViewForTable looks like Parallax, Sepcailly design for UITableView. " id="HxM-9n-icu">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jK1-Og-j9t">
                                         <rect key="frame" x="0.0" y="10" width="320" height="46"/>
@@ -22,8 +22,8 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="k0d-nd-H2p">
-                                                    <rect key="frame" x="20" y="7" width="260" height="30"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="k0d-nd-H2p">
+                                                    <rect key="frame" x="0.0" y="1" width="300" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Default"/>

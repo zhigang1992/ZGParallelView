@@ -163,9 +163,12 @@ static char UITableViewZGParallelViewIsObserving;
         self.embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
     } else if (yOffset<self.viewHeight*(self.displayRadio-1.f)) {
         switch (self.parallelViewStyle) {
-            case ZGScrollViewStyleCutOffAtMax:
+            case ZGScrollViewStyleDefault:
+                break;
+            case ZGScrollViewStyleCutOffAtMax:{
                 self.contentOffset = CGPointMake(0.f, self.viewHeight*(self.displayRadio-1.f));
                 break;
+            }
             case ZGScrollViewStyleStickToTheTop:{
                 self.embededScrollView.frame = CGRectMake(0, yOffset, self.embededScrollView.frame.size.width, self.embededScrollView.frame.size.height);
                 self.embededScrollView.contentOffset = CGPointMake(0.f, -self.viewHeight*(self.displayRadio-1.f)*0.5);
