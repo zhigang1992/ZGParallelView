@@ -51,6 +51,14 @@
 }
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == self.tableView) {
+        [self.tableView updateParallelViewWithOffset:scrollView.contentOffset];
+    }
+    if (scrollView == self.headerScrollView) {
+        [self darkerTheBackground:scrollView.contentOffset.x];
+    }
+}
 
 
 //=====================================================================
@@ -58,11 +66,6 @@
 //             Rest of the code is for demo purpose
 //
 //=====================================================================
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self darkerTheBackground:scrollView.contentOffset.x];
-}
-
 
 - (void)customizeUI{
     self.headerScrollView.contentSize = self.contontView.frame.size;

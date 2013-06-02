@@ -9,17 +9,10 @@
 #import "UITableView+ZGParallelView.h"
 #import <objc/runtime.h>
 
-@interface ZGScrollView : UIScrollView
-@property (nonatomic, weak) UITableView *tableView;
-@end
-
-
-
 static char UITableViewZGParallelViewDisplayRadio;
 static char UITableViewZGParallelViewViewHeight;
 static char UITableViewZGParallelViewStyle;
 static char UITableViewZGParallelViewEmbededScrollView;
-static char UITableViewZGParallelViewIsObserving;
 static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
 
 
@@ -28,13 +21,12 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
 @property (nonatomic, assign) CGFloat viewHeight;
 @property (nonatomic, assign) ZGScrollViewStyle parallelViewStyle;
 @property (nonatomic, assign) BOOL cutOffAtMaxSetContentOffSet;
-@property (nonatomic, strong) ZGScrollView *embededScrollView;
-@property (nonatomic, assign) BOOL isObserving;
+@property (nonatomic, strong) UIScrollView *embededScrollView;
 @end
 
 
 @implementation UITableView (ZGParallelViewPri)
-@dynamic displayRadio, viewHeight, parallelViewStyle, embededScrollView, isObserving, cutOffAtMaxSetContentOffSet;
+@dynamic displayRadio, viewHeight, parallelViewStyle, embededScrollView, cutOffAtMaxSetContentOffSet;
 
 - (void)setDisplayRadio:(CGFloat)displayRadio {
     [self willChangeValueForKey:@"displayRadio"];
@@ -92,7 +84,7 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
     }
 }
 
-- (void)setEmbededScrollView:(ZGScrollView *)embededScrollView {
+- (void)setEmbededScrollView:(UIScrollView *)embededScrollView {
     [self willChangeValueForKey:@"embededScrollView"];
     objc_setAssociatedObject(self, &UITableViewZGParallelViewEmbededScrollView,
                              embededScrollView,
@@ -100,34 +92,8 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
     [self didChangeValueForKey:@"embededScrollView"];
 }
 
-- (ZGScrollView *)embededScrollView {
+- (UIScrollView *)embededScrollView {
     return objc_getAssociatedObject(self, &UITableViewZGParallelViewEmbededScrollView);
-}
-
-- (void)setIsObserving:(BOOL)isObserving {
-    if (self.isObserving == YES && isObserving == NO) {
-        @try {
-            [self removeObserver:self forKeyPath:@"contentOffset"];
-        }
-        @catch (NSException *exception) {
-            //It's not observing
-        }
-    }
-    
-    [self willChangeValueForKey:@"isObserving"];
-    objc_setAssociatedObject(self, &UITableViewZGParallelViewIsObserving,
-                             [NSNumber numberWithBool:isObserving],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self didChangeValueForKey:@"isObserving"];
-}
-
-- (BOOL)isObserving {
-    NSNumber *number = objc_getAssociatedObject(self, &UITableViewZGParallelViewIsObserving);
-    if (number == nil) {
-        return NO;
-    } else {
-        return [number boolValue];
-    }
 }
 @end
 
@@ -158,9 +124,8 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
     }
     self.viewHeight = aViewToAdd.frame.size.height;
     self.parallelViewStyle = parallelViewStyle;
-    self.embededScrollView = [[ZGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight)];
+    self.embededScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight)];
     self.embededScrollView.scrollsToTop = NO;
-    self.embededScrollView.tableView = self;
     [self.embededScrollView addSubview:aViewToAdd];
     aViewToAdd.frame = CGRectOffset(aViewToAdd.frame, 0, self.viewHeight*(1.f - self.displayRadio)/2.f);
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.viewHeight*self.displayRadio)];
@@ -168,23 +133,9 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
     self.embededScrollView.frame = CGRectOffset(self.embededScrollView.frame, 0, self.viewHeight*(self.displayRadio-1.f));
     self.tableHeaderView = headView;
     
-    if (self.isObserving == NO) {
-        [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-        self.isObserving = YES;
-    }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if([keyPath isEqualToString:@"contentOffset"]) {
-        if (self.cutOffAtMaxSetContentOffSet) {
-            self.cutOffAtMaxSetContentOffSet = NO;
-        } else {
-            [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
-        }
-    }
-}
-
-- (void)scrollViewDidScroll:(CGPoint)contentOffset {
+- (void)updateParallelViewWithOffset:(CGPoint)contentOffset {
     CGFloat yOffset = contentOffset.y;
     if (yOffset<0 && yOffset>self.viewHeight*(self.displayRadio-1.f)) {
         self.embededScrollView.contentOffset = CGPointMake(0.f, -yOffset*0.5f);
@@ -209,21 +160,4 @@ static char UITableViewZGParallelViewCutOffAtMaxSetContentOffSet;
     }
 }
 
-- (void)dealloc{
-    if (self.isObserving) {
-        self.isObserving = NO; 
-    }
-}
-
-@end
-
-
-
-@implementation ZGScrollView
-@synthesize tableView;
-- (void)dealloc {
-    if ([self.tableView isObserving] == YES) {
-        self.tableView.isObserving = NO;//!!Remove KVO Observer
-    }
-}
 @end

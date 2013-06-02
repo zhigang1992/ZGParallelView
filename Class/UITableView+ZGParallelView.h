@@ -23,4 +23,6 @@ typedef NSUInteger ZGScrollViewStyle;
 - (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio cutOffAtMax:(BOOL)cutOffAtMax DEPRECATED_ATTRIBUTE;
 - (void)addParallelViewWithUIView:(UIView *)aViewToAdd withDisplayRadio:(CGFloat )displayRadio headerViewStyle:(ZGScrollViewStyle )style;
 
+- (void)updateParallelViewWithOffset:(CGPoint)contentOffset;
+
 @end
