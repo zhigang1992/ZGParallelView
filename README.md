@@ -19,7 +19,8 @@ The head view will be a full featured UIView, it can handle touch event or even 
 		//By default, cutOffAtMax is set to NO
 		//Set cutOffAtMax to YES to stop the scrolling when it hits the top.
 		
-4. Thx to **awesome** [fengjian0106](https://github.com/fengjian0106), this is all you need to do.
+4. In  `scrollViewDidScroll:`, you need to call
+        `self.tableView updateParallelViewWithOffset:scrollView.contentOffset];`
 
 ####Screenshot
 
