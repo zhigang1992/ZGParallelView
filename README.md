@@ -6,3 +6,8 @@ ZGParallelView
 For reason, please see [issue8](https://github.com/zhigang1992/ZGParallelView/issues/8)
 
 I'm truly sorry for those who used this project.
+
+---------
+This is a way easier implementation of similiar effect.
+
+https://github.com/zhigang1992/ZGExpandZoomView
